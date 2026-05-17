@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width:100%;
+            border: 2px solid #F3F4F6;
+        }
+        .form-group{
+            padding: 10px;
+        }
+        h1{
+            text-align: center;
+        }
+        #submit{
+            background-color: #0D6EFD;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #submit:hover{
+            border: 2.5px solid #68a2f8;
+        }
+        table{
+            width: 100%;
+            border-bottom: 1px solid  #F3F4F6;
+            border-collapse: collapse;
+            
+        }
+        thead{
+            font-weight:bold ;
+        }
+        
+
+
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1>MyBookList</h1>
+    <div class="form-group">
+        <label for="">Title</label><br>
+        <input type="text" id="title"><br>
+        <label for="">Author</label><br>
+        <input type="text" id="author"><br>
+        <label for="">ISBN#</label><br>
+        <input type="text" id="isbn"><br>
+        <button id="submit"> Add Book</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>ISBN#</td>
+                </tr>
+            </thead>
+            <tbody id="book-list"></tbody>
+        </table>
+    </div>
 
+    <script>
+        let submit=document.querySelector("#submit");
+        submit.addEventListener("click", ()=>{
+            let title1=document.querySelector("#title").value;
+            let author1=document.querySelector("#author").value;
+            let isbn1=document.querySelector("#isbn").value;
+            if(title1!=="" && author1!=="" && isbn1!==""){
+                let tr=document.createElement("tr");
+                let td1=document.createElement("td");
+                let td2=document.createElement("td");
+                let td3=document.createElement("td");
+                let td4=document.createElement("td");
+                td1.textContent=title1;
+                td2.textContent=author1;
+                td3.textContent=isbn1;
+                let del=document.createElement("button");
+                del.textContent="x";
+                del.style.backgroundColor="red"
+                del.addEventListener("click",()=>{
+                     let parent=del.parentElement;
+                     parent.parentElement.remove();
+                })
+                td4.append(del);
+                tr.append(td1);
+                tr.append(td2);
+                tr.append(td3);
+                tr.append(td4);
+                let container=document.querySelector("#book-list");
+                container.append(tr)
+            }
+        })
+
+    </script>
 </body>
-
 </html>
